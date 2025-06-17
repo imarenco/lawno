@@ -1,5 +1,5 @@
 import { Movie, People } from "@/app/types";
-const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://api:4000";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:4000";
 
 export async function getFilm(id: string): Promise<Movie | null> {
   try {
@@ -8,18 +8,10 @@ export async function getFilm(id: string): Promise<Movie | null> {
       cache: "no-store",
     });
     if (!res.ok) {
-      console.log(res);
       throw new Error("Failed to fetch");
     }
     const data = await res.json();
-    return {
-      ...data.result,
-      ...data.result.properties,
-      characters: data.result.properties.characters.map((character: any) => ({
-        ...character,
-        ...character.properties,
-      })),
-    };
+    return data.result;
   } catch (error) {
     console.error("Error fetching film:", error);
     return null;
@@ -32,14 +24,7 @@ export async function getPerson(id: string): Promise<People | null> {
     if (!res.ok) throw new Error("Failed to fetch");
 
     const json = await res.json();
-    return {
-      ...json?.person?.properties,
-      ...json?.person,
-      films: json?.person?.properties?.films?.map((film: any) => ({
-        ...film,
-        ...film.properties,
-      })),
-    };
+    return json.person;
   } catch (error) {
     console.error("Error fetching person detail:", error);
     return null;
@@ -57,7 +42,7 @@ export async function getList(
     if (!res.ok) throw new Error("Failed to fetch");
 
     const json = await res.json();
-    return json.result.map((item: any) => ({ ...item.properties, ...item }));
+    return json.result;
   } catch (error) {
     console.error("Error fetching person detail:", error);
     return [];

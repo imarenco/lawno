@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { SearchBox } from "../components/SearchBox";
-import { ResultsList } from "../components/ResultsList";
+import { SearchBox } from "../components/molecules/SearchBox";
+import { ResultsList } from "../components/organisms/ResultsList";
 
 import { SearchType } from "./types";
 import { useSwapiSearch } from "@/hooks/useList";

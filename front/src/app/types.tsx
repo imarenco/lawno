@@ -1,6 +1,12 @@
 export type SearchType = "people" | "films";
 
 export type People = {
+  properties: PeopleProps;
+  description: string;
+  uid: string;
+};
+
+export type PeopleProps = {
   created: string;
   edited: string;
   name: string;
@@ -15,26 +21,25 @@ export type People = {
   birth_year: string;
   url: string;
   _id: string;
+};
+
+export type Movie = {
+  properties: MovieProps;
   description: string;
   uid: string;
 };
 
-export type Movie = {
+export type MovieProps = {
   created: string;
   edited: string;
-  starships: string[];
-  vehicles: string[];
-  planets: string[];
   producer: string;
   title: string;
   episode_id: number;
   director: string;
   release_date: string;
   opening_crawl: string;
+  characters: People[];
   species: string[];
   url: string;
   _id: string;
-  description: string;
-  uid: string;
-  characters: People[];
 };

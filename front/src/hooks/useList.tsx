@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { Movie, People, SearchType } from "../app/types";
 import { getList } from "@/utils/requests";
@@ -20,9 +19,9 @@ export function useSwapiSearch(type: SearchType, query: string) {
       try {
         const data = await getList(type, query);
         setResults(data);
-      } catch (err: any) {
+      } catch (error: unknown) {
+        console.error(error);
         setError("Failed to fetch data");
-        console.error(err);
       } finally {
         setLoading(false);
       }

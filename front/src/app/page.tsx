@@ -5,7 +5,7 @@ import { SearchBox } from "../components/SearchBox";
 import { ResultsList } from "../components/ResultsList";
 
 import { SearchType } from "./types";
-import { useSwapiSearch } from "@/hooks/useSwapiSearch";
+import { useSwapiSearch } from "@/hooks/useList";
 
 export default function SearchPage() {
   const [searchType, setSearchType] = useState<SearchType>("people");

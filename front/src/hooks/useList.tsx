@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { Movie, People, SearchType } from "../app/types";
+import { getList } from "@/utils/requests";
 
 export function useSwapiSearch(type: SearchType, query: string) {
   const [results, setResults] = useState<Movie[] | People[]>([]);
@@ -17,15 +18,8 @@ export function useSwapiSearch(type: SearchType, query: string) {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(
-          `http://localhost:4000/api/${type}?search=${encodeURIComponent(
-            query
-          )}`
-        );
-        const data = await res.json();
-        setResults(
-          data.result.map((item: any) => ({ ...item.properties, ...item }))
-        );
+        const data = await getList(type, query);
+        setResults(data);
       } catch (err: any) {
         setError("Failed to fetch data");
         console.error(err);

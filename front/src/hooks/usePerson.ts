@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { People } from "@/app/types";
+import { getPerson } from "@/utils/requests";
 import { useEffect, useState } from "react";
 
-export function usePersonDetail(id: string) {
+export function usePerson(id: string) {
   const [data, setData] = useState<People | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -11,18 +12,8 @@ export function usePersonDetail(id: string) {
     const fetchDetail = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://localhost:4000/api/people/${id}`);
-        if (!res.ok) throw new Error("Failed to fetch");
-
-        const json = await res.json();
-        setData({
-          ...json?.person?.properties,
-          ...json?.person,
-          films: json?.person?.properties?.films?.map((film: any) => ({
-            ...film,
-            ...film.properties,
-          })),
-        });
+        const person = await getPerson(id);
+        setData(person);
       } catch (error) {
         console.error("Error fetching person detail:", error);
         setData(null);

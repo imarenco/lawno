@@ -1,13 +1,13 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { usePersonDetail } from "../../../hooks/usePersonDetail";
+import { usePerson } from "../../../hooks/usePerson";
 import Link from "next/link";
 
 export default function PersonDetail() {
   const params = useParams();
   const id = params?.id as string;
-  const { data: person } = usePersonDetail(id);
+  const { data: person } = usePerson(id);
 
   return (
     person && (
@@ -37,7 +37,7 @@ export default function PersonDetail() {
           <div>
             <h2 className="font-semibold text-lg border-b pb-1 mb-2">Movies</h2>
             <div className="flex flex-wrap gap-2">
-              {person?.films?.map((film) => { 
+              {person?.films?.map((film) => {
                 return (
                   <Link
                     key={""}

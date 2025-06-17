@@ -37,7 +37,7 @@ This will start:
 - Frontend (Next.js) on http://localhost:3000
 - Backend API on http://localhost:4000
 - MongoDB on localhost:27017
-- Cron job for data synchronization
+- Cron job each 5 minutes, to save statistics.
 
 ## Running without Docker
 
@@ -124,7 +124,7 @@ npm run cron
 - `GET /api/films/:id`: Get film details
 
 ### Stats
-- `GET /api/stats`: Get latest statistics
+- `GET /api/stats`: Get latest 5 minutes statistics
 
 ## Development
 

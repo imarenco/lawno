@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6.0
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+  web:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    environment:
+      - NEXT_PUBLIC_API_URL=http://api:4000
+    networks:
+      - app-network
+    restart: unless-stopped
+  api:
+    build: 
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/starwars_api
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+    restart: unless-stopped
+  cron:
+    build: 
+      context: ./back
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
+    command: ["node", "dist/cron/cronRunner.js"]
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/starwars_api
+      - NODE_ENV=production
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo_data:

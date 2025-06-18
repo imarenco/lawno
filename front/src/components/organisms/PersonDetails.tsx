@@ -15,7 +15,7 @@ export const PersonDetails: React.FC<PersonDetailsProps> = ({ person }) => {
     <div className="p-8 max-w-4xl mx-auto bg-white shadow rounded w-full">
       <Title>{person?.properties?.name}</Title>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6 mb-24">
         <div>
           <Subtitle>Details</Subtitle>
           <Text>
@@ -43,7 +43,7 @@ export const PersonDetails: React.FC<PersonDetailsProps> = ({ person }) => {
         </div>
       </div>
 
-      <Button href="/" className="mt-6">
+      <Button href="/">
         BACK TO SEARCH
       </Button>
     </div>

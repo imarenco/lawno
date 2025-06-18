@@ -15,7 +15,7 @@ export const FilmDetails: React.FC<FilmDetailsProps> = ({ film }) => {
     <div className="p-8 max-w-4xl mx-auto bg-white shadow rounded">
       <Title>{film?.properties?.title}</Title>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6 mb-6">
         <div>
           <Subtitle>Opening Crawl</Subtitle>
           <Text>{film?.properties?.opening_crawl}</Text>
@@ -23,17 +23,21 @@ export const FilmDetails: React.FC<FilmDetailsProps> = ({ film }) => {
 
         <div>
           <Subtitle>Characters</Subtitle>
-          <div className="flex flex-wrap gap-2">
-            {film?.properties?.characters?.map((character) => (
-              <CharacterLink key={character.uid} character={character} />
-            ))}
+          <div className="flex flex-wrap gap-0">
+            {film?.properties?.characters?.map((character, index) => [
+              <CharacterLink
+                key={`${index}-${character.uid}`}
+                character={character}
+              />,
+              <label key={`${index}`} className="text-sm mr-1">
+                {index < film?.properties?.characters?.length - 1 && ", "}
+              </label>,
+            ])}
           </div>
         </div>
       </div>
 
-      <Button href="/" className="mt-6">
-        BACK TO SEARCH
-      </Button>
+      <Button href="/">BACK TO SEARCH</Button>
     </div>
   );
 };

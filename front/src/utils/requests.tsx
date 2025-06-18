@@ -3,7 +3,6 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:4000";
 
 export async function getFilm(id: string): Promise<Movie | null> {
   try {
-    console.log(`Fetching from: ${apiUrl}/api/films/${id}`);
     const res = await fetch(`${apiUrl}/api/films/${id}`, {
       cache: "no-store",
     });

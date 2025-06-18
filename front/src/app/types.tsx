@@ -1,4 +1,7 @@
-export type SearchType = "people" | "films";
+export enum SearchType {
+  People = "people",
+  Films = "films",
+}
 
 export type People = {
   properties: PeopleProps;

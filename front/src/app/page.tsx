@@ -8,7 +8,7 @@ import { SearchType } from "./types";
 import { useSwapiSearch } from "@/hooks/useList";
 
 export default function SearchPage() {
-  const [searchType, setSearchType] = useState<SearchType>("people");
+  const [searchType, setSearchType] = useState<SearchType>(SearchType.Films);
   const [search, setSearch] = useState("");
   const onChangeType = (type: SearchType) => {
     setSearchType(type);

@@ -25,9 +25,9 @@ export const SearchBox: React.FC<Props> = ({
           <input
             type="radio"
             name="searchType"
-            checked={searchType === "people"}
+            checked={searchType === SearchType.People}
             onChange={() => {
-              setSearchType("people");
+              setSearchType(SearchType.People);
               setQuery("");
             }}
           />
@@ -37,9 +37,9 @@ export const SearchBox: React.FC<Props> = ({
           <input
             type="radio"
             name="searchType"
-            checked={searchType === "films"}
+            checked={searchType === SearchType.Films}
             onChange={() => {
-              setSearchType("films");
+              setSearchType(SearchType.Films);
               setQuery("");
             }}
           />
@@ -48,7 +48,11 @@ export const SearchBox: React.FC<Props> = ({
       </div>
       <input
         type="text"
-        placeholder="Search..."
+        placeholder={
+          searchType === SearchType.People
+            ? "e.g. Chewbacca, Yoda, Boba Fett"
+            : "e.g. The Empire Strikes Back, The Force Awakens"
+        }
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="w-full border border-gray-300 rounded px-3 py-2 mb-4"

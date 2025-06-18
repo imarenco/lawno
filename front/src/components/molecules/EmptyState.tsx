@@ -5,10 +5,14 @@ export const EmptyState: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
         isLoading ? "min-h-84" : ""
       }`}
     >
-      <p className="text-base font-semibold">{isLoading ? "Searching..." : "There are zero matches."}</p>
+      <p className="text-base font-semibold">
+        {isLoading ? "Searching..." : "There are zero matches."}
+      </p>
 
       {!isLoading && (
-        <p className="text-sm">Use the form to search for People or Movies.</p>
+        <p className="text-base font-semibold">
+          Use the form to search for People or Movies.
+        </p>
       )}
     </div>
   );

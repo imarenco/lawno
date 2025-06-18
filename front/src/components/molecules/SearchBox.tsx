@@ -18,7 +18,7 @@ export const SearchBox: React.FC<Props> = ({
   const isDisabled = !query || query == "";
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 w-96 h-[300px]">
+    <div className="bg-white shadow-md rounded-lg p-6 w-96 h-[225px]">
       <p className="mb-4 font-semibold">What are you searching for?</p>
       <div className="flex gap-4 mb-4">
         <label className="flex items-center gap-2">
@@ -60,7 +60,7 @@ export const SearchBox: React.FC<Props> = ({
       <button
         onClick={() => onSearch(query)}
         disabled={isDisabled}
-        className={`w-full bg-green-500 rounded-[10px] hover:bg-green-600 text-white font-semibold py-2 cursor-pointer disabled:bg-[#c4c4c4] disabled:cursor-not-allowed`}
+        className={`w-full bg-[#0ab463] rounded-[10px] hover:bg-green-600 text-white font-semibold py-2 cursor-pointer disabled:bg-[#c4c4c4] disabled:cursor-not-allowed`}
       >
         {loading ? "SEARCHING..." : "SEARCH"}
       </button>
